@@ -3,6 +3,7 @@
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
+ * Shows one person's single
  */
 ?>
 
@@ -28,55 +29,83 @@
 
     <nav>
       <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Homepage</a>
+        <a href="#" class="brand-logo">Logged In page</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Login</a></li>
-          <li><a href="badges.html">Sign Up</a></li>
+          <li><a href="#">"User's home page link"</a></li>
+          <li><a href="my_snippets.html">My Snippets</a></li>
+          <li><a href="setting.html">Settings</a></li>
         </ul>
       </div>
     </nav>
 
     <div class="container">
-      <h2>List of Users</h2>
+
       <div class="card">
-        <span class="card-title">Username</span>
+        <span class="card-title">Add Snippet</span>
         <div class="card-content">
-          <p>
-Snippet
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-</p>
-          <a href="#">Link for each user</a>
+          <form id="addSnippet">
+            <textarea placeholder="Limited HTML is now supported in snippets (e.g., <b>, <i>, etc.)!"
+              id="snippetText" class="materialize-textarea"></textarea>
+            <input class="btn" type="submit" name="name" value="Add snippet">
+          </form>
         </div>
       </div>
 
       <div class="card">
-        <span class="card-title">Username</span>
+        <span class="card-title">Upload File</span>
         <div class="card-content">
-          <p>
-Snippet
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-</p>
-          <a href="#">Link for each user</a>
+          <form enctype="multipart/form-data" action="/upload/image" method="post">
+              <input id="image-file" type="file" />
+              <input class="btn" type="submit" value="Upload File">
+          </form>
         </div>
       </div>
 
-      <div class="card">
-        <span class="card-title">Username</span>
-        <div class="card-content">
-          <p>
-Snippet
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-</p>
-          <a href="#">Link for each user</a>
-        </div>
-      </div>
     </div>
+
+    <div class="container" id="allSnippets">
+
+      <h2>List of Users</h2>
+
+      <div class="card">
+        <span class="card-title">Username</span>
+        <div class="card-content">
+          <p>
+Snippet
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+</p>
+          <a href="#">Link for each user</a>
+        </div>
+      </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        $.get('/allsnippets', function(data){
+
+          function addChild(userId, lastSnippet, userUrl){
+            $('#allSnippets').append('<div class="card"><span class="card-title">'+ userId +
+              '</span> <div class="card-content"> <p>' + lastSnippet
+              +'</p> <a href="#">' + userUrl + '</a></div></div>')
+          }
+
+          // data.forEach(function(){
+          //   addChild()
+          // })
+
+        })
+
+
+
+      })
+
+    </script>
 
   </body>
 </html>

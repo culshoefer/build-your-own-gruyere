@@ -3,6 +3,7 @@
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
+ * Page displaying all snippets of one user. User can delete his snippets here.
  */
 ?>
 
@@ -30,8 +31,8 @@
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">Homepage</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Login</a></li>
-          <li><a href="badges.html">Sign Up</a></li>
+          <li><a href="sass">Login</a></li>
+          <li><a href="badges">Sign Up</a></li>
         </ul>
       </div>
     </nav>
