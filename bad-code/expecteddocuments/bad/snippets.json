@@ -1,0 +1,11 @@
+[
+  {
+    "content": "<h1>Title</h1>",
+    "author": "culshoefer"
+  }
+  ,
+  {
+    "content": "<script type>alert('WOW XSS WORKS!);</script>",
+    "author": "timkuzh"
+  }
+]

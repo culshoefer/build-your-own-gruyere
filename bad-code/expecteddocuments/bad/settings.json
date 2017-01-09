@@ -1,0 +1,8 @@
+{
+  "password": "hunter2",
+  "username": "culshoefer",
+  "avatarurl": "google.com",
+  "privatesnippet": "<script>alert('WOW! XSS IN PRIVATE SNIPPET!);</script>'",
+  "homepageurl": "https://culshoefer.com",
+  "profilecolour": "#FFFFFF; opacity: 0"
+}
