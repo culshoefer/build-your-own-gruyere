@@ -1,37 +1,33 @@
 <?php
-include 'includes/header.php';
-include 'frontend/homepage.html';
-$a[] = "Anna";
-$a[] = "Brittany";
-$a[] = "Cinderella";
-$a[] = "Diana";
-$a[] = "Eva";
-$a[] = "Fiona";
-$a[] = "Gunda";
-$a[] = "Hege";
-$a[] = "Inga";
-$a[] = "Johanna";
-$a[] = "Kitty";
-$a[] = "Linda";
-$a[] = "Nina";
-$a[] = "Ophelia";
-$a[] = "Petunia";
-$a[] = "Amanda";
-$a[] = "Raquel";
-$a[] = "Cindy";
-$a[] = "Doris";
-$a[] = "Eve";
-$a[] = "Evita";
-$a[] = "Sunniva";
-$a[] = "Tove";
-$a[] = "Unni";
-$a[] = "Violet";
-$a[] = "Liza";
-$a[] = "Elizabeth";
-$a[] = "Ellen";
-$a[] = "Wenche";
-$a[] = "Vicky";
-echo $_SERVER['REQUEST_URI'];
+namespace BYOG;
+require_once('controllers/SnippetAPI.php');
+require_once('controllers/SettingsAPI.php');
+use BYOG\Controllers\SnippetAPI;
+use BYOG\Controllers\SettingsAPI;
+
+#include 'includes/header.php';
+
+$uri = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+$method = $_SERVER['REQUEST_METHOD'];
+if (sizeof($uri) == 1) {
+    switch ($uri[0]) {
+        case "snippets": {
+            $ret = SnippetAPI::handle($_SERVER);
+            echo $ret;
+            break;
+        }
+        case "settings": {
+            echo "settings";
+            echo SettingsAPI::handle($_SERVER);
+            break;
+        }
+        default: {
+            echo file_get_contents('frontend/homepage.html');
+        }
+    }
+} else {
+    echo file_get_contents('frontend/homepage.html');
+}
 ?>
 
 

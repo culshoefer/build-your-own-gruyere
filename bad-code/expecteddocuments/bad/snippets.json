@@ -5,7 +5,7 @@
   }
   ,
   {
-    "content": "<script type>alert('WOW XSS WORKS!);</script>",
+    "content": "<script type='text/javascript'>alert("WOW XSS WORKS!");</script>",
     "author": "timkuzh"
   }
 ]
