@@ -32,6 +32,7 @@ https://www.owasp.org/index.php/Top_10_2013-Top_10
 - Unsafe API --> e.g. don't let users mess around with your API
 - File upload validation? 
 - E-Mail validation https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet
+- Sequential numbering of snippets
 ## List of automated Pentesting tools
 https://www.owasp.org/index.php/Appendix_A:_Testing_Tools
 http://resources.infosecinstitute.com/14-popular-web-application-vulnerability-scanners/
