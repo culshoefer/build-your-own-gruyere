@@ -1,3 +1,11 @@
+<?php
+/**
+ * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
+ * @copyright 2017
+ * @license http://opensource.org/licenses/gpl-license.php MIT License
+ */
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -34,11 +42,11 @@
         <span class="card-title">Username</span>
         <div class="card-content">
           <p>
-            Snippet
+Snippet
             Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+</p>
           <a href="#">Link for each user</a>
         </div>
       </div>
@@ -47,11 +55,11 @@
         <span class="card-title">Username</span>
         <div class="card-content">
           <p>
-            Snippet
+Snippet
             Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+</p>
           <a href="#">Link for each user</a>
         </div>
       </div>
@@ -60,11 +68,11 @@
         <span class="card-title">Username</span>
         <div class="card-content">
           <p>
-            Snippet
+Snippet
             Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+</p>
           <a href="#">Link for each user</a>
         </div>
       </div>
