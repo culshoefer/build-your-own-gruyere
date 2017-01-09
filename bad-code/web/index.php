@@ -1,32 +1,31 @@
 <?php
 namespace BYOG;
-require_once('controllers/SnippetAPI.php');
-require_once('controllers/SettingsAPI.php');
-use BYOG\Controllers\SnippetAPI;
-use BYOG\Controllers\SettingsAPI;
+
+require_once('components/SuperHelper.php');
+require_once('controllers/APIController.php');
+use BYOG\Controllers\APIController;
+use BYOG\Components\SuperHelper;
 
 #include 'includes/header.php';
 
-$uri = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+$uri = SuperHelper::getPath();
 $method = $_SERVER['REQUEST_METHOD'];
-if (sizeof($uri) == 1) {
-    switch ($uri[0]) {
-        case "snippets": {
-            $ret = SnippetAPI::handle($_SERVER);
-            echo $ret;
+if (sizeof($uri) == 2 && $uri[0] == "api") {
+    echo APIController::handle($_SERVER);
+} else if(sizeof($uri) == 1) {
+    switch($uri[0]) {
+        case "login": {
+            echo file_get_contents('frontend/login.html');
             break;
         }
         case "settings": {
-            echo "settings";
-            echo SettingsAPI::handle($_SERVER);
+            echo file_get_contents('frontend/settings.html');
             break;
         }
-        default: {
-            echo file_get_contents('frontend/homepage.html');
-        }
+        default: echo file_get_contents('frontend/homepage.html');
     }
 } else {
-    echo file_get_contents('frontend/homepage.html');
+    echo file_get_contents('frontend/login.html');
 }
 ?>
 

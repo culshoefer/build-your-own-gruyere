@@ -1,5 +1,5 @@
 <?php
-namespace BYOG\Controllers;
+namespace BYOG\Components;
 use Exception;
 /**
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>

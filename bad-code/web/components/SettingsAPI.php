@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/gpl-license.php MIT License
  */
 
-namespace BYOG\Controllers;
+namespace BYOG\Components;
 
 
 /**
