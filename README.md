@@ -9,7 +9,7 @@ https://www.owasp.org/index.php/Top_10_2013-Top_10
 - XSS - No input validation https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet
   - DOM XSS --> in client
   - Persistent XSS --> on server
-  
+- Cookie hijacking
 - SQL injection
   - Unsanitized parameters from JSON
 - Clickjacking https://www.owasp.org/index.php/Clickjacking_Defense_Cheat_Sheet
@@ -26,7 +26,8 @@ https://www.owasp.org/index.php/Top_10_2013-Top_10
   - Javascript Request to Vendor
 - Network configuration mistakes
 - Unsafe API --> e.g. don't let users mess around with your API
-  
+- File upload validation? 
+- E-Mail validation https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet
 ## List of automated Pentesting tools
 
 ## List of security libraries
