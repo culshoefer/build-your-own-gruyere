@@ -34,7 +34,7 @@ class APIController
                 break;
             }
             default: {
-                return file_get_contents('frontend/homepage.html');
+                SuperHelper::give404();
             }
         }
     }

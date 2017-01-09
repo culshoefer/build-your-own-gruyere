@@ -3,6 +3,7 @@
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
+ * Diplays login depending on session (e.g. we need to display errors on trying to register)
  */
 
 ?>
@@ -39,7 +40,7 @@
             <div class="card">
                 <span class="card-title">Login</span>
                 <div class="card-content">
-                    <form class="" action="index.html" method="post">
+                    <form class="" method="post">
                         <div class="input-field">
                             <input type="text" placeholder="username" class="validate">
                         </div>
@@ -56,7 +57,7 @@
             <div class="card">
                 <span class="card-title">Sign up</span>
                 <div class="card-content">
-                    <form class="" action="index.html" method="post">
+                    <form class="" method="post">
                         <div class="input-field">
                             <input type="text" placeholder="username" class="validate">
                         </div>

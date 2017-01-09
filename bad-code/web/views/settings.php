@@ -3,6 +3,7 @@
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
+ * Renders settings, depending on the type of session (e.g. we need to display username, etc...)
  */
 ?>
 <!DOCTYPE html>
@@ -38,7 +39,7 @@
             <div class="card">
                 <span class="card-title">Edit your profile</span>
                 <div class="card-content">
-                    <form class="" action="index.html" method="post">
+                    <form class="" method="post">
                         <div class="input-field">
                             <input type="text" placeholder="User name" class="validate">
                         </div>

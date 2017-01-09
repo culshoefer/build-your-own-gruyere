@@ -17,7 +17,25 @@ namespace BYOG\Components;
  */
 class Login
 {
-    function areValidCredentials($user_id, $password) {
+    private static function areValidCredentials($user_id, $password) {
         return true;
+    }
+
+    private static function providesCredentials()
+    {
+        return true;//!empty($_POST['username']) && !empty($_POST['password'])
+    }
+
+    public static function isLoggedIn() {
+        //return !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
+        return self::areValidCredentials(null, null);
+    }
+
+    public static function wantsToLogin() {
+        return false;
+    }
+
+    public static function wantsToRegister() {
+        return false;
     }
 }

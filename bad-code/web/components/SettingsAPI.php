@@ -22,6 +22,8 @@ class SettingsAPI
             return self::getSettings($request);
         } else if($request['REQUEST_METHOD'] == "POST") {
             return self::postSettings($request);
+        } else {
+            SuperHelper::give404();
         }
     }
 

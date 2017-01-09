@@ -2,53 +2,50 @@
 namespace BYOG;
 
 require_once('components/SuperHelper.php');
+require_once('components/Login.php');
 require_once('controllers/APIController.php');
 use BYOG\Controllers\APIController;
 use BYOG\Components\SuperHelper;
+use BYOG\Components\Login;
 
 #include 'includes/header.php';
 /**
  * @param $uri
  */
-function resolveRoutings($uri)
+function resolveMemberRoutings($uri)
 {
-    switch ($uri[0]) {
-        case "settings": {
-            echo file_get_contents('frontend/settings.html');
-            break;
+    if(sizeof($uri) == 1) {
+        switch ($uri[0]) {
+            case "settings": {
+                include_once('views/settings.php');
+                break;
+            }
+            case "home": {
+                include_once('views/homepage.php');
+                break;
+            }
+            default:
+                SuperHelper::redirectoTo('/home');
         }
-        case "home": {
-            echo file_get_contents('frontend/homepage.html');
-            break;
-        }
-        case "login": {
-            echo file_get_contents('frontend/login.html');
-            break;
-        }
-        default:
-            header('Location: /login');
+    } else if (sizeof($uri) == 2 && $uri[0] == "api") {
+        echo APIController::handle($_SERVER);
+    } else {
+        SuperHelper::redirectoTo('/home');
     }
 }
 
 if(session_start()) {
     $uri = SuperHelper::getPath();
     $method = $_SERVER['REQUEST_METHOD'];
-    if (sizeof($uri) == 2 && $uri[0] == "api") {
-        echo APIController::handle($_SERVER);
-    } else if(sizeof($uri) == 1) {
-        resolveRoutings($uri);
+    if(Login::isLoggedIn()) {//user logged in, all good
+        resolveMemberRoutings($uri);
+    } elseif(Login::wantsToLogin()) {
+        //do some login action
+    } elseif(Login::wantsToRegister()) {
+        //do some registration action
     } else {
-        header('Location: /login');
-        //die(); Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
+        include_once('views/login.php');//sorry :(
     }
 } else {
     echo "Sorry, unable to create session :(";
 }
-?>
-
-
-<!-- 1337 c0d3 -->
-
-<?php
-include 'includes/footer.php';
-?>
