@@ -6,6 +6,10 @@ OWASP Top 10
 https://www.owasp.org/index.php/Top_10_2013-Top_10
 
 ## List of exploitable things
+### More formally, OWASP Application Security Verification Standard
+[https://www.owasp.org/index.php/OWASP_Application_Security_Verification_Standard](https://www.owasp.org/index.php/OWASP_Application_Security_Verification_Standard)
+
+### My loose list
 - XSS - No input validation https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet
   - DOM XSS --> in client
   - Persistent XSS --> on server
