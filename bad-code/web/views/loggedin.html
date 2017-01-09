@@ -28,13 +28,37 @@
 
     <nav>
       <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Homepage</a>
+        <a href="#" class="brand-logo">Username</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Login</a></li>
-          <li><a href="badges.html">Sign Up</a></li>
+          <li><a href="sass.html">Settings</a></li>
         </ul>
       </div>
     </nav>
+
+    <div class="container">
+
+      <div class="card">
+        <span class="card-title">Add Snippet</span>
+        <div class="card-content">
+          <form id="addSnippet">
+            <textarea placeholder="Limited HTML is now supported in snippets (e.g., <b>, <i>, etc.)!"
+              id="snippetText" class="materialize-textarea"></textarea>
+            <input class="btn" type="submit" name="name" value="Add snippet">
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-title">Upload File</span>
+        <div class="card-content">
+          <form enctype="multipart/form-data" action="/upload/image" method="post">
+              <input id="image-file" type="file" />
+              <input class="btn" type="submit" value="Upload File">
+          </form>
+        </div>
+      </div>
+
+    </div>
 
     <div class="container">
       <h2>List of Users</h2>
@@ -81,7 +105,11 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 
     <script type="text/javascript">
 
-      
+      $(document).ready(function(){
+
+
+
+      })
 
     </script>
 
