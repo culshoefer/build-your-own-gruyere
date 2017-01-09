@@ -33,6 +33,8 @@ https://www.owasp.org/index.php/Top_10_2013-Top_10
 - File upload validation? 
 - E-Mail validation https://www.owasp.org/index.php/Input_Validation_Cheat_Sheet
 ## List of automated Pentesting tools
+https://www.owasp.org/index.php/Appendix_A:_Testing_Tools
+http://resources.infosecinstitute.com/14-popular-web-application-vulnerability-scanners/
 
 ## List of security libraries
 XSS sanitizer https://github.com/cure53/DOMPurify
