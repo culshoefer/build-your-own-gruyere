@@ -30,7 +30,8 @@
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">Username</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Settings</a></li>
+          <li><a href="my_snippets.html">My Snippets</a></li>
+          <li><a href="setting.html">Settings</a></li>
         </ul>
       </div>
     </nav>
@@ -60,20 +61,9 @@
 
     </div>
 
-    <div class="container">
+    <div class="container" id="allSnippets">
+
       <h2>List of Users</h2>
-      <div class="card">
-        <span class="card-title">Username</span>
-        <div class="card-content">
-          <p>
-Snippet
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-</p>
-          <a href="#">Link for each user</a>
-        </div>
-      </div>
 
       <div class="card">
         <span class="card-title">Username</span>
@@ -88,24 +78,26 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         </div>
       </div>
 
-      <div class="card">
-        <span class="card-title">Username</span>
-        <div class="card-content">
-          <p>
-Snippet
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-</p>
-          <a href="#">Link for each user</a>
-        </div>
-      </div>
     </div>
 
 
     <script type="text/javascript">
 
       $(document).ready(function(){
+
+        $.get('/allsnippets', function(data){
+
+          function addChild(userId, lastSnippet, userUrl){
+            $('#allSnippets').append('<div class="card"><span class="card-title">'+ userId +
+              '</span> <div class="card-content"> <p>' + lastSnippet
+              +'</p> <a href="#">' + userUrl + '</a></div></div>')
+          }
+
+          // data.forEach(function(){
+          //   addChild()
+          // })
+
+        })
 
 
 
