@@ -40,4 +40,9 @@ class SuperHelper
             echo "No connection to db possible";
         }
     }
+
+    public static function giveForbidden() {
+        header("HTTP/1.0 403 Forbidden");
+        self::redirectoTo('/login');
+    }
 }
