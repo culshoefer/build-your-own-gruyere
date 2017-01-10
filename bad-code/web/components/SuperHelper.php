@@ -6,6 +6,7 @@
  */
 
 namespace BYOG\Components;
+use mysqli;
 
 
 /**
@@ -23,11 +24,25 @@ class SuperHelper
 
     public static function redirectoTo($location) {
         header('Location: ' . $location);
-        //die(); Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
+        die(); //Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
     public static function give404() {
         header("HTTP/1.0 404 Not Found");
+        self::redirectoTo('/login');
+    }
+
+    public static function getDbConnection() { 
+        $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+        if(empty($conn->connect_error)) {
+            return $conn;
+        } else {
+            echo "No connection to db possible";
+        }
+    }
+
+    public static function giveForbidden() {
+        header("HTTP/1.0 403 Forbidden");
         self::redirectoTo('/login');
     }
 }

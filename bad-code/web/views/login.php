@@ -18,7 +18,7 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 
-    <link rel="stylesheet" href="style.css" media="screen" title="no title">
+    <link rel="stylesheet" href="../assets/style.css" media="screen" title="no title">
 
     <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -39,19 +39,39 @@
 </nav>
 
 <div class="container">
-    <div class="card">
-        <span class="card-title">Login</span>
-        <div class="card-content">
-            <form class="" method="post">
-                <div class="input-field">
-                    <input type="text" placeholder="username" class="validate">
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <span class="card-title">Login</span>
+                <div class="card-content">
+                    <form class="" method="post">
+                        <div class="input-field">
+                            <input type="text" placeholder="username" class="validate" name="username">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" placeholder="password" class="validate" name="password">
+                        </div>
+                        <input type="submit" class="btn" name="submit-login" value="Login">
+                    </form>
                 </div>
-                <div class="input-field">
-                    <input type="password" placeholder="password" class="validate">
+            </div>
+        </div>
+
+        <div class="col s6">
+            <div class="card">
+                <span class="card-title">Sign up</span>
+                <div class="card-content">
+                    <form class="" method="post">
+                        <div class="input-field">
+                            <input type="text" placeholder="username" class="validate" name="username">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" placeholder="password" class="validate" name="password">
+                        </div>
+                        <input type="submit" class="btn" name="submit-registration" value="Sign up">
+                    </form>
                 </div>
-                <button class="btn">Login</button>
-                <button class="btn">Register</button>
-            </form>
+            </div>
         </div>
     </div>
 </div>

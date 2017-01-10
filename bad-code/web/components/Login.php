@@ -17,25 +17,41 @@ namespace BYOG\Components;
  */
 class Login
 {
-    private static function areValidCredentials($user_id, $password) {
-        return true;
+    private static function areValidCredentials() {
+        $conn = SuperHelper::getDbConnection();
+        $res = mysqli_query($conn,
+            "SELECT * FROM users WHERE username = " . $_POST['username'] . " AND password = " . $_POST['password']);
+        #echo var_dump($res);
+        return count($res) > 0;
     }
 
     private static function providesCredentials()
     {
-        return true;//!empty($_POST['username']) && !empty($_POST['password'])
+        return !empty($_POST['username']) && !empty($_POST['password']);
     }
 
     public static function isLoggedIn() {
-        //return !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
-        return self::areValidCredentials(null, null);
+        return isset($_SESSION['isloggedin']) && isset($_SESSION['username']) &&
+        !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
+        //return self::areValidCredentials(null, null);
     }
 
     public static function wantsToLogin() {
-        return false;
+        return isset($_POST['submit-login']) && self::providesCredentials();
+    }
+
+    public static function attemptLogin() {
+        if(self::areValidCredentials()) {
+            $_SESSION['isloggedin'] = true;
+            $_SESSION['username'] = $_POST['username'];
+        }
     }
 
     public static function wantsToRegister() {
-        return false;
+        return isset($_POST['submit-registration']) && self::providesCredentials();
+    }
+
+    public static function logout() {
+        session_destroy();
     }
 }

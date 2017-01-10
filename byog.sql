@@ -1,7 +1,7 @@
 CREATE DATABASE `byog`;
 
 CREATE TABLE `byog`. `users` (
-  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(50) NOT NULL,
   `password` VARCHAR(128) NOT NULL,
   `avatar_url` VARCHAR(50),
@@ -14,3 +14,8 @@ CREATE TABLE `byog`. `snippets` (
   `user_id` INT NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES USERS(`id`)
 );
+
+INSERT INTO `byog` . `users` (
+  name,
+  password
+) VALUES ('admin', 'admin');
