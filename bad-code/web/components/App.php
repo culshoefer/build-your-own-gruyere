@@ -31,17 +31,19 @@ class App
         if(Login::wantsToLogin() && !Login::loggedIn()) {
             Login::attemptLogin();
             SuperHelper::redirectoTo('/loggedin');
+            die();
         }
 
         if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login'))) {
             SuperHelper::redirectoTo('/login');
+            die();
         }
 
         switch ($uriComponents[0]) {
             case '':
                 if (Login::loggedIn()) {
                     SuperHelper::redirectoTo('/loggedin');
-                    break;
+                    die();
                 }
                 View::render('homepage.php');
                 break;
@@ -64,11 +66,11 @@ class App
             case 'upload':
                 FileUploader::upload();
                 SuperHelper::redirectoTo('/loggedin');
-                break;
+                die();
             case 'logout':
                 Login::logout();
                 SuperHelper::redirectoTo('/');
-                break;
+                die();
             default:
                 SuperHelper::give404();
         }
