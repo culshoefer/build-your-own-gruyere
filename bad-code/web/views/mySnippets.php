@@ -51,10 +51,33 @@
 
 
     <script type="text/javascript">
+      function displaySnippets(snippet) {
+        $('#mySnippets').append('<div class="card">\
+                                    <p>' + snippet.content + '</p>\
+                                    <button class="btn" name="button">Delete</button>\
+                                  </div>');
+      }
 
+      function getCookieWithName(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+      }
 
       $(document).ready(function(){
+        var username = getCookieWithName('username');
 
+        displaySnippets({"content":"yo yo yo", "snippet_id":"123"});
+
+        $.get('/api/snippets', {
+          'username': username
+        }, function(data, status) {
+          //display stuff here
+          data.forEach(function(snippet) {
+            displaySnippets(snippet);
+          })
+
+        });
       })
 
 
