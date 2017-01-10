@@ -31,9 +31,10 @@
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">Logged In page</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#">"User's home page link"</a></li>
-          <li><a href="my_snippets.html">My Snippets</a></li>
-          <li><a href="setting.html">Settings</a></li>
+          <li><a href="loggedin">Home</a></li>
+          <li><a href="mySnippets">My Snippets</a></li>
+          <li><a href="settings">Settings</a></li>
+          <li><a href="homepage">Sign out</a></li>
         </ul>
       </div>
     </nav>
@@ -56,7 +57,7 @@
         <div class="card-content">
           <form enctype="multipart/form-data" action="/upload/image" method="post">
               <input id="image-file" type="file" />
-              <input class="btn" type="submit" value="Upload File">
+              <input class="btn" type="submit" value="Upload File"> <!-- This would then direct to an upload successful page -->
           </form>
         </div>
       </div>

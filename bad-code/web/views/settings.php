@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Profile</title>
+    <title>Profile Settings</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -28,9 +28,15 @@
 <body>
 
 <nav>
-    <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Profile</a>
-    </div>
+  <div class="nav-wrapper container">
+    <a href="#" class="brand-logo">Settings</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="loggedin">Home</a></li>
+      <li><a href="mySnippets">My Snippets</a></li>
+      <li><a href="settings">Settings</a></li>
+      <li><a href="homepage">Sign out</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
