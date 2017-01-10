@@ -30,7 +30,7 @@ class Login
         return !empty($_POST['username']) && !empty($_POST['password']);
     }
 
-    public static function isLoggedIn() {
+    public static function loggedIn() {
         return isset($_SESSION['isloggedin']) && isset($_SESSION['username']) &&
         !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
         //return self::areValidCredentials(null, null);
@@ -40,12 +40,13 @@ class Login
         return isset($_POST['submit-login']) && self::providesCredentials();
     }
 
-    public static function attemptLogin() {
-        if(self::areValidCredentials()) {
+    public static function attemptLogin()
+    {
+        if (self::areValidCredentials()) {
             $_SESSION['isloggedin'] = true;
             $_SESSION['username'] = $_POST['username'];
         }
-    
+    }
 
     public static function wantsToRegister() {
         return isset($_POST['submit-registration']) && self::providesCredentials();

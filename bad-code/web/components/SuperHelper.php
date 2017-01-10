@@ -19,7 +19,7 @@ use mysqli;
 class SuperHelper
 {
     public static function getPath() {
-        return explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+        return explode('/', strtolower(trim($_SERVER['REQUEST_URI'],'/')));
     }
 
     public static function redirectoTo($location) {
