@@ -45,7 +45,7 @@ class Login
             $_SESSION['isloggedin'] = true;
             $_SESSION['username'] = $_POST['username'];
         }
-    }
+    
 
     public static function wantsToRegister() {
         return isset($_POST['submit-registration']) && self::providesCredentials();
