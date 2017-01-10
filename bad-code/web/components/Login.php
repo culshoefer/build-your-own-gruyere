@@ -20,7 +20,7 @@ class Login
     private static function areValidCredentials() {
         $conn = SuperHelper::getDbConnection();
         $res = mysqli_query($conn,
-            "SELECT * FROM users WHERE username = " . $_POST['username'] . " AND password = " . $_POST['password']);
+            "SELECT id FROM users WHERE username = " . $_POST['username'] . " AND password = " . $_POST['password']);
         #echo var_dump($res);
         return count($res) > 0;
     }
@@ -31,9 +31,8 @@ class Login
     }
 
     public static function loggedIn() {
-        return isset($_SESSION['isloggedin']) && isset($_SESSION['username']) &&
-        !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
-        //return self::areValidCredentials(null, null);
+        return isset($_COOKIE['logged_in']) && isset($_COOKIE['username']) &&
+        !empty($_COOKIE['logged_in']) && !empty($_COOKIE['username']);
     }
 
     public static function wantsToLogin() {
@@ -43,8 +42,8 @@ class Login
     public static function attemptLogin()
     {
         if (self::areValidCredentials()) {
-            $_SESSION['isloggedin'] = true;
-            $_SESSION['username'] = $_POST['username'];
+            setcookie('logged_in', true);
+            setcookie('username', $_POST['username']);
         }
     }
 
@@ -53,6 +52,7 @@ class Login
     }
 
     public static function logout() {
-        session_destroy();
+        setcookie('logged_in', null, 1);
+        setcookie('username', null, 1);
     }
 }
