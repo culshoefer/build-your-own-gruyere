@@ -31,7 +31,7 @@ function resolveMemberRoutings($uri)
                 include_once('views/loggedin.php');
                 break;
             }
-            case "my_snippets": {
+            case "mySnippets": {
                 include_once('views/mySnippets.php');
                 break;
             }
