@@ -33,7 +33,7 @@ class App
             SuperHelper::redirectoTo('/loggedin');
         }
 
-        if (!Login::loggedIn() && !in_array($uriComponents[0], ['', 'login'])) {
+        if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login'))) {
             SuperHelper::redirectoTo('/login');
         }
 
