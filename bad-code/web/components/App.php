@@ -52,6 +52,9 @@ class App
                 return View::render('mySnippets.php');
             case 'settings':
                 return View::render('settings.php');
+            case 'upload':
+                FileUploader::upload();
+                break;
             case 'logout':
                 Login::logout();
                 return SuperHelper::redirectoTo('/');
@@ -62,5 +65,9 @@ class App
         if ($uriComponents[0] === 'api') {
             APIController::handle($uriComponents);
         }
+    }
+
+    public static function getFileUploadDir() {
+        return "../uploadedfiles/";
     }
 }

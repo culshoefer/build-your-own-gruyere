@@ -58,8 +58,8 @@
         <span class="card-title">Upload File</span>
         <div class="card-content">
           <form enctype="multipart/form-data" action="/upload" method="post">
-              <input id="image-file" type="file" />
-              <input class="btn" type="submit" value="Upload File"> <!-- This would then direct to an upload successful page -->
+              <input id="image-file" type="file" name="file-to-upload"/>
+              <input class="btn" type="submit" value="Upload File" name="submit-file-upload"> <!-- This would then direct to an upload successful page -->
           </form>
         </div>
       </div>
