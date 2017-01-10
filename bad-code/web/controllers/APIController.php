@@ -21,23 +21,14 @@ class APIController
     public static function handle($request) {
         $path = SuperHelper::getPath();
 
-        echo 'helloq';
-
-        echo Login::isLoggedIn() . 't';
-
-        echo 'et';
-
         if(!Login::isLoggedIn()) {
             return SuperHelper::giveForbidden();
         }
-
-        echo 'world';
 
         $m = $_SERVER['REQUEST_METHOD'];
 
         switch ($path[1]) {
             case "snippets": {
-                echo '\n' . $m;
                 if($m === 'GET') {
                     if(!isset($_POST['user_id'])) {
                         return SuperHelper::give400();

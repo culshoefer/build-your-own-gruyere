@@ -32,6 +32,10 @@ class SuperHelper
         self::redirectoTo('/login');
     }
 
+    public static function give400() {
+        header("HTTP/1.0 400 Bad Request");
+    }
+
     public static function getDbConnection() { 
         $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
         if(empty($conn->connect_error)) {
