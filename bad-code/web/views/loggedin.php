@@ -48,7 +48,7 @@
           <form id="addSnippet">
             <textarea placeholder="Limited HTML is now supported in snippets (e.g., <b>, <i>, etc.)!"
               id="snippetText" class="materialize-textarea"></textarea>
-            <input class="btn" type="submit" name="name" value="Add snippet">
+            <input class="btn" type="submit" name="name" value="Add Snippet" id="snippet-button">
           </form>
         </div>
       </div>
@@ -112,7 +112,20 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             });
         });
 
+        $('#addSnippet').submit(function(){
+          var data = {
+            "content": $('#snippetText').val(),
+            "username": username
+          }
 
+          $.ajax({
+            type: "POST",
+            url: '/api/snippets',
+            data: data,
+            success: function(){
+              location.reload();
+            },
+          });
       })
 
     </script>

@@ -67,8 +67,6 @@
       $(document).ready(function(){
         var username = getCookieWithName('username');
 
-        displaySnippets({"content":"yo yo yo", "snippet_id":"123"});
-
         $.get('/api/snippets', {
           'username': username
         }, function(data, status) {
