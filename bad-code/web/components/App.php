@@ -39,34 +39,38 @@ class App
 
         switch ($uriComponents[0]) {
             case '':
-                if (Login::loggedIn())
-                    return SuperHelper::redirectoTo('/loggedin');
-                return View::render('homepage.php');
+                if (Login::loggedIn()) {
+                    SuperHelper::redirectoTo('/loggedin');
+                    break;
+                }
+                View::render('homepage.php');
+                break;
             case 'api':
                 return APIController::handle($uriComponents);
             case 'post':
                 return POSTController::handle($uriComponents);
             case 'login':
-                return View::render('login.php');
+                View::render('login.php');
+                break;
             case 'loggedin':
-                return View::render('loggedin.php');
+                View::render('loggedin.php');
+                break;
             case 'mySnippets':
-                return View::render('mySnippets.php');
+                View::render('mySnippets.php');
+                break;
             case 'settings':
-                return View::render('settings.php');
+                View::render('settings.php');
+                break;
             case 'upload':
                 FileUploader::upload();
                 SuperHelper::redirectoTo('/loggedin');
                 break;
             case 'logout':
                 Login::logout();
-                return SuperHelper::redirectoTo('/');
+                SuperHelper::redirectoTo('/');
+                break;
             default:
                 SuperHelper::give404();
-        }
-
-        if ($uriComponents[0] === 'api') {
-            APIController::handle($uriComponents);
         }
     }
 }
