@@ -51,20 +51,46 @@
 
 
     <script type="text/javascript">
-      function displaySnippets(snippet) {
-        $('#mySnippets').append('<div class="card">\
-                                    <p>' + snippet.content + '</p>\
-                                    <button class="btn" name="button">Delete</button>\
-                                  </div>');
-      }
-
-      function getCookieWithName(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-      }
 
       $(document).ready(function(){
+
+        function getSnippetIdFromElement(elem) {
+          return elem.attr('snippet_id');
+        }
+
+        function getCookieWithName(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2) return parts.pop().split(";").shift();
+        }
+
+        function deleteSnippet(snippet_id) {
+          $.ajax({
+            type: "DELETE",
+            url: "/references",
+            data: JSON.stringify({"snippet_id": snippet_id}),
+            success: function(data) {
+              window.location.reload();
+            }
+          });
+        }
+
+        function onclickremovesnippet(e) {
+          var snippet_id = getSnippetIdFromElement($(this));
+          deleteSnippet(snippet_id);
+        }
+
+        function displaySnippet(snippet) {
+          var div = $('<div class="card">\
+                                    <p>' + snippet.content + '</p>\
+                                  </div>');
+          var btn = $('<button class="btn snippet-remove" name="button"\
+                                    snippet_id="' + snippet.snippet_id + '">Delete</button>');
+          btn.click(onclickremovesnippet);
+          div.append(btn);
+          $('#mySnippets').append(div);
+        }
+
         var username = getCookieWithName('username');
 
         $.get('/api/snippets', {
@@ -72,13 +98,11 @@
         }, function(data, status) {
           //display stuff here
           data.forEach(function(snippet) {
-            displaySnippets(snippet);
+            displaySnippet(snippet);
           })
 
         });
-      })
-
-
+      });
     </script>
 
   </body>

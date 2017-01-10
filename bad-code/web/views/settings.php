@@ -93,7 +93,9 @@
       }
     });
 
-    $('#settings').submit(function(){
+    $('#settings').submit(function(e){
+      e.preventDefault();
+      
       var data = {
         "password": $('#password').val(),
         "username": $('#username').val(),
@@ -105,8 +107,8 @@
 
       $.ajax({
         type: "POST",
-        url: '/api/settings',
-        data: data,
+        url: '/api/settings?uid=' + encodeURIComponent(getCookie('uid')) + '&password=' + encodeURIComponent($('#password').val()) + '&username=' + encodeURIComponent($('#username').val()) + '&avatarurl=' + encodeURIComponent($('#avatarurl').val()) + '&privatesnippet=' + encodeURIComponent($('#privatesnippet').val()) + '&homepageurl=' + encodeURIComponent($('#homepageurl').val()) + '&profilecolour=' + encodeURIComponent($('#profilecolour').val()),
+        // data: data,
         success: function(){
           location.reload();
         },
