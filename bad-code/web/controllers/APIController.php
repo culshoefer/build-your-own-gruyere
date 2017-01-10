@@ -24,9 +24,22 @@ class APIController
 {
     public static function handle($request) {
         $path = SuperHelper::getPath();
+
+        if(!Login::isLoggedIn()) {
+            return SuperHelper::giveForbidden();
+        }
+
+        $m = $_SERVER['REQUEST_METHOD'];
+
         switch ($path[1]) {
             case "snippets": {
-                return SnippetAPI::handle($request);
+                echo '\n' . $m;
+                if($m === 'GET') {
+                    $conn = SuperHelper::getDbConnection();
+                    $res = mysqli_query($conn,
+                        "SELECT * FROM snippets WHERE owner_id = " . $_POST['user_id']);
+                    echo json_encode($res);
+                }
                 break;
             }
             case "settings": {
@@ -34,7 +47,7 @@ class APIController
                 break;
             }
             default: {
-                SuperHelper::give404();
+                return SuperHelper::give404();
             }
         }
     }
