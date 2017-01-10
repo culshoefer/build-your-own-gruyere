@@ -56,7 +56,7 @@ class App
                 return View::render('settings.php');
             case 'upload':
                 FileUploader::upload();
-                //SuperHelper::redirectoTo('/loggedin');
+                SuperHelper::redirectoTo('/loggedin');
                 break;
             case 'logout':
                 Login::logout();
