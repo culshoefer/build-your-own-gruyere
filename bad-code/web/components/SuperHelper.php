@@ -19,7 +19,7 @@ use mysqli;
 class SuperHelper
 {
     public static function getPath() {
-        return explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+        return explode('/', strtolower(trim($_SERVER['REQUEST_URI'],'/')));
     }
 
     public static function redirectoTo($location) {
@@ -30,6 +30,10 @@ class SuperHelper
     public static function give404() {
         header("HTTP/1.0 404 Not Found");
         self::redirectoTo('/login');
+    }
+
+    public static function give400() {
+        header("HTTP/1.0 400 Bad Request");
     }
 
     public static function getDbConnection() { 

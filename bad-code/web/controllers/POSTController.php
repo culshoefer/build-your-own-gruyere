@@ -16,7 +16,7 @@ use BYOG\Components\SuperHelper;
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @version 0.0.1
  */
-class APIController
+class POSTController
 {
     public static function handle($request) {
         $path = SuperHelper::getPath();

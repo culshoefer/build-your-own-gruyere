@@ -1,0 +1,17 @@
+{
+    "name": "timbokz/bad-code",
+    "authors": [
+        {
+            "name": "Tim Kuzhagaliyev",
+            "email": "tim.kuzh@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BYOG\\": "web/",
+            "BYOG\\Components\\": "web/components",
+            "BYOG\\Controllers\\": "web/controllers"
+        }
+    }
+}
