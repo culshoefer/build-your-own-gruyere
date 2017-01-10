@@ -101,9 +101,9 @@
         "username": $('#username').val(),
         "avatarurl": $('#avatarurl').val(),
         "privatesnippet": $('#privatesnippet').val(),
-        "homepageurl": $('homepageurl').val(),
-        "profilecolour": $('profilecolour').val()
-      }
+        "homepageurl": $('#homepageurl').val(),
+        "profilecolour": $('#profilecolour').val()
+      };
 
       $.ajax({
         type: "POST",

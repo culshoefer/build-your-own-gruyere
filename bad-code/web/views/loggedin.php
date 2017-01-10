@@ -96,7 +96,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         var username = getCookieWithName('username');
         $('#usn').text(username);
 
-        $.get('/api/overview' function(data) {
+        $.get('/api/overview', function(data) {
             function addChild(username, last_snippet) {
                 $('#allSnippets').append('<div class="card"> \
                                             <span class="card-title">' + username + '</span>\
