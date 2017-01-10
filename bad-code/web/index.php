@@ -16,6 +16,7 @@ use BYOG\Components\Login;
  */
 function resolveMemberRoutings($uri)
 {
+    echo var_dump($uri);
     if(sizeof($uri) == 1) {
         switch ($uri[0]) {
             case "settings": {
@@ -32,6 +33,11 @@ function resolveMemberRoutings($uri)
             }
             case "my_snippets": {
                 include_once('views/mySnippets.php');
+                break;
+            }
+            case "logout": {
+                Login::logout();
+                SuperHelper::redirectoTo('/');
                 break;
             }
             default:
@@ -51,14 +57,15 @@ if(session_start()) {
         echo 'true';
         resolveMemberRoutings($uri);
     } elseif(Login::wantsToLogin()) {
-        //echo 'wantstologin';
+        echo 'wantstologin';
         Login::attemptLogin();
+        SuperHelper::redirectoTo('/loggedin');
     } elseif(Login::wantsToRegister()) {
         Registration::registerUser($_POST['username'], $_POST['password']);
         Login::attemptLogin();
-        SuperHelper::redirectoTo('/');
+        SuperHelper::redirectoTo('/loggedin');
     } else {
-        //echo 'not logged in or so';
+        echo 'not logged in or so';
         if(sizeof($uri) == 1) {
             if($uri[0] == 'home') {
                 include_once('views/homepage.php');

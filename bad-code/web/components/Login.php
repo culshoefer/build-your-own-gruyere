@@ -31,7 +31,7 @@ class Login
     }
 
     public static function isLoggedIn() {
-        return isset($_SESSION['isloggeedin']) && isset($_SESSION['username']) &&
+        return isset($_SESSION['isloggedin']) && isset($_SESSION['username']) &&
         !empty($_SESSION['isloggedin']) && !empty($_SESSION['username']);
         //return self::areValidCredentials(null, null);
     }

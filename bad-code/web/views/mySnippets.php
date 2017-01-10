@@ -34,7 +34,7 @@
           <li><a href="loggedin">Home</a></li>
           <li><a href="mySnippets">My Snippets</a></li>
           <li><a href="settings">Settings</a></li>
-          <li><a href="homepage">Sign out</a></li>
+          <li><a href="logout">Sign out</a></li>
         </ul>
       </div>
     </nav>

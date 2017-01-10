@@ -24,7 +24,7 @@ class SuperHelper
 
     public static function redirectoTo($location) {
         header('Location: ' . $location);
-        //die(); Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
+        die(); //Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
     public static function give404() {
