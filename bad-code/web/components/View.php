@@ -14,7 +14,7 @@ class View
 
     public static function render($viewName)
     {
-        include_once __DIR__ . '../views/' . $viewName;
+        include_once __DIR__ . '/../views/' . $viewName;
     }
 
 }

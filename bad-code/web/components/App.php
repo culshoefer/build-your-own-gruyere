@@ -46,6 +46,8 @@ class App
                 return APIController::handle($uriComponents);
             case 'post':
                 return POSTController::handle($uriComponents);
+            case 'login':
+                return View::render('login.php');
             case 'loggedin':
                 return View::render('loggedin.php');
             case 'mySnippets':
@@ -54,6 +56,7 @@ class App
                 return View::render('settings.php');
             case 'upload':
                 FileUploader::upload();
+                //SuperHelper::redirectoTo('/loggedin');
                 break;
             case 'logout':
                 Login::logout();
@@ -65,9 +68,5 @@ class App
         if ($uriComponents[0] === 'api') {
             APIController::handle($uriComponents);
         }
-    }
-
-    public static function getFileUploadDir() {
-        return "../uploadedfiles/";
     }
 }

