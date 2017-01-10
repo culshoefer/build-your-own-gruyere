@@ -13,6 +13,7 @@ $MAX_FILE_SIZE = 50000;
 class FileUploader
 {
 
+    //TODO make file upload based on user
     private static function getFileUploadDir() {
         return __DIR__ . "/../uploadedfiles/"; //TODO make this less than chmod 777
     }
