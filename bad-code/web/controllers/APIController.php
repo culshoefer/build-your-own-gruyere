@@ -6,11 +6,7 @@
  */
 
 namespace BYOG\Controllers;
-require_once('components/SnippetAPI.php');
-require_once('components/SettingsAPI.php');
-require_once('components/SuperHelper.php');
-use BYOG\Components\SnippetAPI;
-use BYOG\Components\SettingsAPI;
+use BYOG\Components\Login;
 use BYOG\Components\SuperHelper;
 
 /**
@@ -25,9 +21,17 @@ class APIController
     public static function handle($request) {
         $path = SuperHelper::getPath();
 
+        echo 'helloq';
+
+        echo Login::isLoggedIn() . 't';
+
+        echo 'et';
+
         if(!Login::isLoggedIn()) {
             return SuperHelper::giveForbidden();
         }
+
+        echo 'world';
 
         $m = $_SERVER['REQUEST_METHOD'];
 
@@ -35,6 +39,9 @@ class APIController
             case "snippets": {
                 echo '\n' . $m;
                 if($m === 'GET') {
+                    if(!isset($_POST['user_id'])) {
+                        return SuperHelper::give400();
+                    }
                     $conn = SuperHelper::getDbConnection();
                     $res = mysqli_query($conn,
                         "SELECT * FROM snippets WHERE owner_id = " . $_POST['user_id']);
