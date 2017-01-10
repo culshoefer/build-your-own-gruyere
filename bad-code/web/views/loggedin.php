@@ -3,7 +3,7 @@
  * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
- * Shows one person's single 
+ * Shows one person's single
  */
 ?>
 
@@ -17,7 +17,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="style.css" media="screen" title="no title">
+    <link rel="stylesheet" href="../assets/style.css" media="screen" title="no title">
 
     <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -29,10 +29,12 @@
 
     <nav>
       <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Username</a>
+        <a href="#" class="brand-logo">Logged In page</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="my_snippets">My Snippets</a></li>
+          <li><a href="loggedin">Home</a></li>
+          <li><a href="mySnippets">My Snippets</a></li>
           <li><a href="settings">Settings</a></li>
+          <li><a href="homepage">Sign out</a></li>
         </ul>
       </div>
     </nav>
@@ -55,7 +57,7 @@
         <div class="card-content">
           <form enctype="multipart/form-data" action="/upload/image" method="post">
               <input id="image-file" type="file" />
-              <input class="btn" type="submit" value="Upload File">
+              <input class="btn" type="submit" value="Upload File"> <!-- This would then direct to an upload successful page -->
           </form>
         </div>
       </div>

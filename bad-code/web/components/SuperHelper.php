@@ -32,9 +32,9 @@ class SuperHelper
         self::redirectoTo('/login');
     }
 
-    public static function getDbConnection() {
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
-        if(!empty($conn->connect_error)) {
+    public static function getDbConnection() { 
+        $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+        if(empty($conn->connect_error)) {
             return $conn;
         } else {
             echo "No connection to db possible";

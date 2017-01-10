@@ -16,7 +16,7 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="style.css" media="screen" title="no title">
+    <link rel="stylesheet" href="../assets/style.css" media="screen" title="no title">
 
     <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
@@ -28,7 +28,7 @@
 
 <nav>
     <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Homepage</a>
+        <a href="homepage" class="brand-logo">Home</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="login">Login</a></li>
             <li><a href="login">Sign Up</a></li>

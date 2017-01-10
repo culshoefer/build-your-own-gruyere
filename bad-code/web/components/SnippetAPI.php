@@ -18,7 +18,9 @@ class SnippetAPI
 
     private static function getSnippets($request)
     {
-        return file_get_contents('../expecteddocuments/bad/snippets.json');
+        $conn = SuperHelper::getDbConnection();
+        $res = mysqli_query($conn, "SELECT id, content FROM snippets WHERE user_id = '" . $_GET['username'] . "'");
+        return json_encode($res);
     }
 
     private static function postSnippet($request)

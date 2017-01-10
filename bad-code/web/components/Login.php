@@ -18,9 +18,10 @@ namespace BYOG\Components;
 class Login
 {
     private static function areValidCredentials() {
-        $res = SuperHelper::getDbConnection()->query(
+        $conn = SuperHelper::getDbConnection();
+        $res = mysqli_query($conn,
             "SELECT * FROM users WHERE username = " . $_POST['username'] . " AND password = " . $_POST['password']);
-        echo var_dump($res);
+        #echo var_dump($res);
         return count($res) > 0;
     }
 

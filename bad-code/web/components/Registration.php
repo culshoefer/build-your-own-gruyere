@@ -30,7 +30,7 @@ class Registration
             echo "Error connecting to database!";
             return false;
         } else {
-            $res = $conn->query("SELECT * FROM users WHERE name = '" . $username . "'");
+            $res = mysqli_query($conn, "SELECT * FROM users WHERE name = '" . $username . "'");
             var_dump($res);
             return count($res) > 0;
         }
