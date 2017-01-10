@@ -23,8 +23,8 @@ use BYOG\Components\SuperHelper;
 class APIController
 {
     public static function handle($request) {
-
-        switch (SuperHelper::getPath()[1]) {
+        $path = SuperHelper::getPath();
+        switch ($path[1]) {
             case "snippets": {
                 return SnippetAPI::handle($request);
                 break;
