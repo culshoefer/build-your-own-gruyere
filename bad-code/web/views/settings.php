@@ -45,27 +45,24 @@
             <div class="card">
                 <span class="card-title">Edit your profile</span>
                 <div class="card-content">
-                    <form class="" method="post">
+                    <form id="settings">
                         <div class="input-field">
-                            <input type="text" placeholder="User name" class="validate">
+                            <input id="username" type="text" placeholder="User name" class="validate">
                         </div>
                         <div class="input-field">
-                            <input type="password" placeholder="OLD password" class="validate">
+                            <input id="password" type="password" placeholder="OLD password" class="validate">
                         </div>
                         <div class="input-field">
-                            <input type="password" placeholder="NEW password" class="validate">
+                            <input id="avatarurl" type="text" placeholder="Icon" class="validate">
                         </div>
                         <div class="input-field">
-                            <input type="text" placeholder="Icon" class="validate">
+                            <input id="homepageurl" type="text" placeholder="Homepage" class="validate">
                         </div>
                         <div class="input-field">
-                            <input type="text" placeholder="Homepage" class="validate">
+                            <input id="profilecolour" type="text" placeholder="Profile colour" class="validate">
                         </div>
                         <div class="input-field">
-                            <input type="text" placeholder="Profile colour" class="validate">
-                        </div>
-                        <div class="input-field">
-                            <textarea id="textarea1" class="materialize-textarea" placeholder="Private snippet"></textarea>
+                            <textarea id="privatesnippet" class="materialize-textarea" placeholder="Private snippet"></textarea>
                         </div>
                         <input type="submit" class="btn" name="name" value="Update">
                     </form>
@@ -75,6 +72,68 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    $.ajax({
+      url: "/api/settings",
+      type: "get",
+      data: {username: getCookie("username")},
+      success: function(data) {
+        $('#password').val(data.password);
+        $('#username').val(data.username);
+        $('#avatarurl').val(data.avatarurl);
+        $('#privatesnippet').val(data.privatesnippet);
+        $('homepageurl').val(data.homepageurl);
+        $('profilecolour').val(data.profilecolour);
+      },
+      error: function(xhr) {
+        location.reload();
+      }
+    });
+
+    $('#settings').submit(function(){
+      var data = {
+        "password": $('#password').val(),
+        "username": $('#username').val(),
+        "avatarurl": $('#avatarurl').val(),
+        "privatesnippet": $('#privatesnippet').val(),
+        "homepageurl": $('homepageurl').val(),
+        "profilecolour": $('profilecolour').val()
+      }
+
+      $.ajax({
+        type: "POST",
+        url: '/api/settings',
+        data: data,
+        success: function(){
+          location.reload();
+        },
+      });
+    })
+
+  })
+
+
+  function getCookie(c_name)
+  {
+      if (document.cookie.length > 0)
+      {
+          c_start = document.cookie.indexOf(c_name + "=");
+          if (c_start != -1)
+          {
+              c_start = c_start + c_name.length + 1;
+              c_end = document.cookie.indexOf(";", c_start);
+              if (c_end == -1) c_end = document.cookie.length;
+              return unescape(document.cookie.substring(c_start,c_end));
+          }
+      }
+      return "";
+   }
+
+
+</script>
+
 </body>
 </html>
-
