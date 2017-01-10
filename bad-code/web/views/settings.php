@@ -31,10 +31,11 @@
   <div class="nav-wrapper container">
     <a href="#" class="brand-logo">Settings</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="loggedin">Home</a></li>
-      <li><a href="mySnippets">My Snippets</a></li>
-      <li><a href="settings">Settings</a></li>
-      <li><a href="logout">Sign out</a></li>
+        <li><a href="home">Home</a></li>
+        <li><a href="loggedin">New entry</a></li>
+        <li><a href="mySnippets">My Snippets</a></li>
+        <li><a href="settings">Settings</a></li>
+        <li><a href="logout">Sign out</a></li>
     </ul>
   </div>
 </nav>
@@ -101,9 +102,9 @@
         "username": $('#username').val(),
         "avatarurl": $('#avatarurl').val(),
         "privatesnippet": $('#privatesnippet').val(),
-        "homepageurl": $('homepageurl').val(),
-        "profilecolour": $('profilecolour').val()
-      }
+        "homepageurl": $('#homepageurl').val(),
+        "profilecolour": $('#profilecolour').val()
+      };
 
       $.ajax({
         type: "POST",

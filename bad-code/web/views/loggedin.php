@@ -32,10 +32,11 @@
         <a href="#" class="brand-logo">Logged In page</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li id="usn"></li>
-          <li><a href="loggedin">Home</a></li>
-          <li><a href="mySnippets">My Snippets</a></li>
-          <li><a href="settings">Settings</a></li>
-          <li><a href="logout">Sign out</a></li>
+            <li><a href="home">Home</a></li>
+            <li><a href="loggedin">New entry</a></li>
+            <li><a href="mySnippets">My Snippets</a></li>
+            <li><a href="settings">Settings</a></li>
+            <li><a href="logout">Sign out</a></li>
         </ul>
       </div>
     </nav>
@@ -96,7 +97,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         var username = getCookieWithName('username');
         $('#usn').text(username);
 
-        $.get('/api/overview' function(data) {
+        $.get('/api/overview', function(data) {
             function addChild(username, last_snippet) {
                 $('#allSnippets').append('<div class="card"> \
                                             <span class="card-title">' + username + '</span>\

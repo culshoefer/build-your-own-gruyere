@@ -37,9 +37,9 @@ class Registration
     }
 
     public static function registerUser($username, $password) {
+        $conn = SuperHelper::getDbConnection();
         if(!empty($username) && !self::userExists($username)) {
-            //do db query
-            //INSERT INTO `users` (`username`, `password`) VALUES (
+            $res = mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('" . $username . "', password '" . $password . "');");
         }
     }
 }
