@@ -93,7 +93,9 @@
       }
     });
 
-    $('#settings').submit(function(){
+    $('#settings').submit(function(e){
+      e.preventDefault();
+      
       var data = {
         "password": $('#password').val(),
         "username": $('#username').val(),

@@ -56,7 +56,7 @@
       <div class="card">
         <span class="card-title">Upload File</span>
         <div class="card-content">
-          <form enctype="multipart/form-data" action="/upload/image" method="post">
+          <form enctype="multipart/form-data" action="/upload" method="post">
               <input id="image-file" type="file" />
               <input class="btn" type="submit" value="Upload File"> <!-- This would then direct to an upload successful page -->
           </form>
@@ -95,7 +95,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
       $(document).ready(function(){
         var username = getCookieWithName('username');
         $('#usn').text(username);
-        
+
         $.get('/api/overview' function(data) {
             function addChild(username, last_snippet) {
                 $('#allSnippets').append('<div class="card"> \
@@ -112,8 +112,40 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
             });
         });
 
+        $('addSnippet').submit(function(e){
+          e.preventDefault();
+
+          $.ajax({
+            type: "POST",
+            url: '/api/settings',
+            data: {
+              'username': getCookie(username),
+              'content': $('#snippetText').val()
+            },
+            success: function(){
+              location.reload();
+            },
+          });
+        })
 
       })
+
+
+      function getCookie(c_name)
+      {
+          if (document.cookie.length > 0)
+          {
+              c_start = document.cookie.indexOf(c_name + "=");
+              if (c_start != -1)
+              {
+                  c_start = c_start + c_name.length + 1;
+                  c_end = document.cookie.indexOf(";", c_start);
+                  if (c_end == -1) c_end = document.cookie.length;
+                  return unescape(document.cookie.substring(c_start,c_end));
+              }
+          }
+          return "";
+       }
 
     </script>
 
