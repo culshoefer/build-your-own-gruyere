@@ -51,16 +51,18 @@
 
 
     <script type="text/javascript">
+
       $(document).ready(function(){
 
         function getSnippetIdFromElement(elem) {
-          return elem.parent.attr('snippet_id');
+          return elem.attr('snippet_id');
         }
 
-        $('.snippet-remove').click(function () {
-          var snippet_id = getSnippetIdFromElement($(this));
-          deleteSnippet(snippet_id);
-        });
+        function getCookieWithName(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length == 2) return parts.pop().split(";").shift();
+        }
 
         function deleteSnippet(snippet_id) {
           $.ajax({
@@ -72,9 +74,37 @@
             }
           });
         }
+
+        function onclickremovesnippet(e) {
+          var snippet_id = getSnippetIdFromElement($(this));
+          deleteSnippet(snippet_id);
+        }
+
+        function displaySnippet(snippet) {
+          var div = $('<div class="card">\
+                                    <p>' + snippet.content + '</p>\
+                                  </div>');
+          var btn = $('<button class="btn snippet-remove" name="button"\
+                                    snippet_id="' + snippet.snippet_id + '">Delete</button>');
+          btn.click(onclickremovesnippet);
+          div.append(btn);
+          $('#mySnippets').append(div);
+        }
+
+        var username = getCookieWithName('username');
+
+        displaySnippet({"content":"yo yo yo", "snippet_id":"123"});
+
+        $.get('/api/snippets', {
+          'username': username
+        }, function(data, status) {
+          //display stuff here
+          data.forEach(function(snippet) {
+            displaySnippet(snippet);
+          })
+
+        });
       });
-
-
     </script>
 
   </body>
