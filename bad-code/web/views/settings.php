@@ -78,9 +78,8 @@
   $(document).ready(function(){
 
     $.ajax({
-      url: "/api/settings",
+      url: "/api/settings?user_id=" + getCookie("user_id"),
       type: "get",
-      data: {username: getCookie("username")},
       success: function(data) {
         $('#password').val(data.password);
         $('#username').val(data.username);
@@ -97,18 +96,23 @@
     $('#settings').submit(function(e){
       e.preventDefault();
       
-      var data = {
-        "password": $('#password').val(),
+      /*var data = "password": $('#password').val(),
         "username": $('#username').val(),
         "avatarurl": $('#avatarurl').val(),
         "privatesnippet": $('#privatesnippet').val(),
         "homepageurl": $('#homepageurl').val(),
         "profilecolour": $('#profilecolour').val()
-      };
+      };*/
 
       $.ajax({
         type: "POST",
-        url: '/api/settings?uid=' + encodeURIComponent(getCookie('uid')) + '&password=' + encodeURIComponent($('#password').val()) + '&username=' + encodeURIComponent($('#username').val()) + '&avatarurl=' + encodeURIComponent($('#avatarurl').val()) + '&privatesnippet=' + encodeURIComponent($('#privatesnippet').val()) + '&homepageurl=' + encodeURIComponent($('#homepageurl').val()) + '&profilecolour=' + encodeURIComponent($('#profilecolour').val()),
+        url: '/api/settings?user_id=' + encodeURIComponent(getCookie('user_id'))
+        + '&password=' + encodeURIComponent($('#password').val())
+        + '&username=' + encodeURIComponent($('#username').val())
+        + '&avatarurl=' + encodeURIComponent($('#avatarurl').val())
+        + '&privatesnippet=' + encodeURIComponent($('#privatesnippet').val())
+        + '&homepageurl=' + encodeURIComponent($('#homepageurl').val())
+        + '&profilecolour=' + encodeURIComponent($('#profilecolour').val()),
         // data: data,
         success: function(){
           location.reload();
@@ -116,7 +120,7 @@
       });
     })
 
-  })
+  });
 
 
   function getCookie(c_name)

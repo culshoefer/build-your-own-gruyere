@@ -103,7 +103,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                                             <span class="card-title">' + username + '</span>\
                                             <div class="card-content">\
                                                 <p>' + last_snippet + '</p>\
-                                                <a href="snippets?uid=' + username + '">All snippets</a>\
+                                                <a href="snippets?user_id=' + username + '">All snippets</a>\
                                             </div>\
                                           </div>');
             }
@@ -118,18 +118,19 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 
           $.ajax({
             type: "POST",
-            url: '/api/settings?uid=' + encodeURIComponent(getCookie('uid')) + '&content=' + encodeURIComponent($('#snippetText').val()),
+            url: '/api/settings?user_id=' + encodeURIComponent(getCookie('user_id'))
+            + '&content=' + encodeURIComponent($('#snippetText').val()),
             // data: {
             //   'username': getCookie(username),
             //   'content': $('#snippetText').val()
             // },
             success: function(){
               location.reload();
-            },
+            }
           });
 
         })
-      })
+      });
 
 
       function getCookie(c_name)

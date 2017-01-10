@@ -94,9 +94,7 @@
 
         var user_id = getCookieWithName('user_id');
 
-        $.get('/api/snippets', {
-          'user_id': user_id
-        }, function(data, status) {
+        $.get('/api/snippets?user_id=' + encodeURIComponent(user_id), function(data, status) {
           //display stuff here
           data.forEach(function(snippet) {
             displaySnippet(snippet);
