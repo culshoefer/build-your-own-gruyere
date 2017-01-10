@@ -67,7 +67,7 @@
         function deleteSnippet(snippet_id) {
           $.ajax({
             type: "DELETE",
-            url: "/references",
+            url: "/api/snippets",
             data: JSON.stringify({"snippet_id": snippet_id}),
             success: function(data) {
               window.location.reload();
@@ -91,12 +91,12 @@
           $('#mySnippets').append(div);
         }
 
-        var username = getCookieWithName('username');
+        var user_id = getCookieWithName('user_id');
 
         displaySnippet({"content":"yo yo yo", "snippet_id":"123"});
 
         $.get('/api/snippets', {
-          'username': username
+          'user_id': user_id
         }, function(data, status) {
           //display stuff here
           data.forEach(function(snippet) {
