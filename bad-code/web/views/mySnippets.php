@@ -51,11 +51,28 @@
 
 
     <script type="text/javascript">
-
-
       $(document).ready(function(){
 
-      })
+        function getSnippetIdFromElement(elem) {
+          return elem.parent.attr('snippet_id');
+        }
+
+        $('.snippet-remove').click(function () {
+          var snippet_id = getSnippetIdFromElement($(this));
+          deleteSnippet(snippet_id);
+        });
+
+        function deleteSnippet(snippet_id) {
+          $.ajax({
+            type: "DELETE",
+            url: "/references",
+            data: JSON.stringify({"snippet_id": snippet_id}),
+            success: function(data) {
+              window.location.reload();
+            }
+          });
+        }
+      });
 
 
     </script>
