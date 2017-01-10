@@ -42,12 +42,12 @@
                 <div class="card-content">
                     <form class="" method="post">
                         <div class="input-field">
-                            <input type="text" placeholder="username" class="validate">
+                            <input type="text" placeholder="username" class="validate" name="username">
                         </div>
                         <div class="input-field">
-                            <input type="password" placeholder="password" class="validate">
+                            <input type="password" placeholder="password" class="validate" name="password">
                         </div>
-                        <input type="submit" class="btn" name="name" value="Login">
+                        <input type="submit" class="btn" name="submit-login" value="Login">
                     </form>
                 </div>
             </div>
@@ -59,12 +59,12 @@
                 <div class="card-content">
                     <form class="" method="post">
                         <div class="input-field">
-                            <input type="text" placeholder="username" class="validate">
+                            <input type="text" placeholder="username" class="validate" name="username">
                         </div>
                         <div class="input-field">
-                            <input type="password" placeholder="password" class="validate">
+                            <input type="password" placeholder="password" class="validate" name="password">
                         </div>
-                        <input type="submit" class="btn" name="name" value="Sign up">
+                        <input type="submit" class="btn" name="submit-registration" value="Sign up">
                     </form>
                 </div>
             </div>
