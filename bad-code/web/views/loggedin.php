@@ -11,7 +11,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Log In</title>
+    <title>Your home</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
@@ -31,6 +31,7 @@
       <div class="nav-wrapper container">
         <a href="#" class="brand-logo">Logged In page</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li id="usn"></li>
           <li><a href="loggedin">Home</a></li>
           <li><a href="mySnippets">My Snippets</a></li>
           <li><a href="settings">Settings</a></li>
@@ -55,7 +56,7 @@
       <div class="card">
         <span class="card-title">Upload File</span>
         <div class="card-content">
-          <form enctype="multipart/form-data" action="/upload/image" method="post">
+          <form enctype="multipart/form-data" action="/upload" method="post">
               <input id="image-file" type="file" />
               <input class="btn" type="submit" value="Upload File"> <!-- This would then direct to an upload successful page -->
           </form>
@@ -85,26 +86,66 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 
 
     <script type="text/javascript">
+      function getCookieWithName(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+      }
 
       $(document).ready(function(){
+        var username = getCookieWithName('username');
+        $('#usn').text(username);
 
-        $.get('/allsnippets', function(data){
+        $.get('/api/overview' function(data) {
+            function addChild(username, last_snippet) {
+                $('#allSnippets').append('<div class="card"> \
+                                            <span class="card-title">' + username + '</span>\
+                                            <div class="card-content">\
+                                                <p>' + last_snippet + '</p>\
+                                                <a href="snippets?uid=' + username + '">All snippets</a>\
+                                            </div>\
+                                          </div>');
+            }
 
-          function addChild(userId, lastSnippet, userUrl){
-            $('#allSnippets').append('<div class="card"><span class="card-title">'+ userId +
-              '</span> <div class="card-content"> <p>' + lastSnippet
-              +'</p> <a href="#">' + userUrl + '</a></div></div>')
-          }
+            data.forEach(function(entry) {
+                addChild(entry.username, entry.last_snippet);
+            });
+        });
 
-          // data.forEach(function(){
-          //   addChild()
-          // })
+        $('addSnippet').submit(function(e){
+          e.preventDefault();
 
+          $.ajax({
+            type: "POST",
+            url: '/api/settings',
+            data: {
+              'username': getCookie(username),
+              'content': $('#snippetText').val()
+            },
+            success: function(){
+              location.reload();
+            },
+          });
         })
 
-
-
       })
+
+
+      function getCookie(c_name)
+      {
+          if (document.cookie.length > 0)
+          {
+              c_start = document.cookie.indexOf(c_name + "=");
+              if (c_start != -1)
+              {
+                  c_start = c_start + c_name.length + 1;
+                  c_end = document.cookie.indexOf(";", c_start);
+                  if (c_end == -1) c_end = document.cookie.length;
+                  return unescape(document.cookie.substring(c_start,c_end));
+              }
+          }
+          return "";
+       }
 
     </script>
 
