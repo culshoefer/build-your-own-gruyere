@@ -82,12 +82,12 @@ include 'includes/header.php';
             });
         });
 
-        $('addSnippet').submit(function (e) {
+        $('#addSnippet').submit(function (e) {
             e.preventDefault();
 
             $.ajax({
                 type: "POST",
-                url: '/api/settings?user_id=' + encodeURIComponent(getCookie('user_id'))
+                url: '/api/snippets?user_id=' + encodeURIComponent(getCookie('user_id'))
                 + '&content=' + encodeURIComponent($('#snippetText').val()),
                 // data: {
                 //   'username': getCookie(username),

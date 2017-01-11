@@ -29,15 +29,30 @@ class SnippetAPI
             echo json_encode($results_array);
         }
 
+        if ($m === 'POST') {
+            if (!isset($_GET['user_id']) || !isset($_GET['content'])) {
+                SuperHelper::give400();
+                die('`user_id` or `content` is not specified!');
+            }
+            $conn = SuperHelper::getDbConnection();
+            $res = mysqli_query($conn,
+                "INSERT INTO snippets (owner_id, content) VALUES ('" . $_GET['user_id'] . "', '" . $_GET['content'] . "')");
+            if (!$res) {
+                echo json_decode('');
+                return;
+            }
+            echo json_encode(array());
+        }
+
         if ($m === 'DELETE') {
-            if (!isset($_POST['snippet_id'])) {
+            if (!isset($_GET['snippet_id'])) {
                 SuperHelper::give400();
                 die('`snippet_id` is not specified!');
             }
             $conn = SuperHelper::getDbConnection();
             $res = mysqli_query($conn,
-                "DELETE FROM snippets WHERE id = '" . $_POST['snippet_id'] . "'");
-            if(!$res) {
+                "DELETE FROM snippets WHERE id = '" . $_GET['snippet_id'] . "'");
+            if (!$res) {
                 echo json_decode('');
                 return;
             }

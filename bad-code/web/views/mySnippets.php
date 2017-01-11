@@ -19,7 +19,7 @@ include 'includes/header.php';
         $(document).ready(function () {
 
             function getSnippetIdFromElement(elem) {
-                return elem.attr('snippet_id');
+                return elem.attr('data-snippet-id');
             }
 
             function getCookieWithName(name) {
@@ -31,8 +31,7 @@ include 'includes/header.php';
             function deleteSnippet(snippet_id) {
                 $.ajax({
                     type: "DELETE",
-                    url: "/api/snippets",
-                    data: JSON.stringify({"snippet_id": snippet_id}),
+                    url: "/api/snippets?snippet_id=" + snippet_id,
                     success: function (data) {
                         window.location.reload();
                     }
@@ -49,7 +48,7 @@ include 'includes/header.php';
                                     <p>' + snippet.content + '</p>\
                                   </div>');
                 var btn = $('<button class="btn snippet-remove" name="button"\
-                                    snippet_id="' + snippet.snippet_id + '">Delete</button>');
+                                    data-snippet-id="' + snippet.id + '">Delete</button>');
                 btn.click(onclickremovesnippet);
                 div.append(btn);
                 $('#mySnippets').append(div);

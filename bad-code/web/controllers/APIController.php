@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Christoph Ulshoefer <christophsulshoefer@gmail.com>
+ * @author Timur Kuzhagaliyev <tim.kuzh@gmail.com>
  * @copyright 2017
  * @license http://opensource.org/licenses/gpl-license.php MIT License
  */
@@ -8,6 +8,7 @@
 namespace BYOG\Controllers;
 
 use BYOG\Components\Login;
+use BYOG\Components\SettingsAPI;
 use BYOG\Components\SnippetAPI;
 use BYOG\Components\SuperHelper;
 
@@ -56,17 +57,15 @@ class APIController
         }
 
         switch ($request[1]) {
-            case "snippets": {
+            case "snippets":
                 SnippetAPI::handle($request);
                 break;
-            }
-            case "settings": {
-                return SettingsAPI::handle($request);
+            case "settings":
+                SettingsAPI::handle($request);
                 break;
-            }
-            default: {
-                return SuperHelper::give404();
-            }
+            default:
+                SuperHelper::give404();
+                die();
         }
     }
 }
