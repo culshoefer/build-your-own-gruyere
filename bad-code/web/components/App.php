@@ -31,8 +31,8 @@ class App
         if (in_array($uriComponents[0], array('assets', 'uploads'))) {
             $path = __DIR__ . '/../' . implode('/', $uriComponents);
             if (file_exists($path)) {
-                // TODO: header('Content-Type: ' . SuperHelper::content_type($path));
-                header('Content-Type: text/css');
+                header('Content-Type: ' . SuperHelper::content_type($path));
+                //header('Content-Type: text/css');
                 include $path;
                 die();
             } else {
