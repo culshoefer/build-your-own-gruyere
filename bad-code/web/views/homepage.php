@@ -16,6 +16,12 @@ include 'includes/header.php';
         $(document).ready(function () {
             $.get('/api/overview', function (data) {
                 function addChild(username, user_id, last_snippet, homepageurl) {
+                    if(null == last_snippet) {
+                        last_snippet = "";
+                    }
+                    if(undefined === homepageurl) {
+                        homepageurl = "";
+                    }
                     $.get('/api/settings?user_id=' + user_id, function (data) {
                         $('#allSnippets').append('<div class="card"> \
                                             <span class="card-title" style="color:' + data.profilecolour + ' !important;">' + username + '</span>\
