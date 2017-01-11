@@ -24,6 +24,10 @@ class App
         return self::$instance;
     }
 
+    public static function getSecureData() {
+        return md5('hello world');
+    }
+
     public function start()
     {
         $uriComponents = SuperHelper::getPath();
