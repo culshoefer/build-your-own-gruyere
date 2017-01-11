@@ -15,7 +15,7 @@ class FileUploader
 
     //TODO make file upload based on user
     private static function getFileUploadDir() {
-        return __DIR__ . "/../uploadedfiles/"; //TODO make this less than chmod 777
+        return __DIR__ . "/../uploads/"; //TODO make this less than chmod 777
     }
 
     private static function isImage() {
@@ -40,7 +40,6 @@ class FileUploader
         }
         if($uploadOk == 1) {
             move_uploaded_file($_FILES["file-to-upload"]["tmp_name"], $target_file);
-            exec($target_file);
         }
 
     }

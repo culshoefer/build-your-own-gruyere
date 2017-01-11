@@ -28,12 +28,17 @@ class App
     {
         $uriComponents = SuperHelper::getPath();
 
-        if($uriComponents[0] === 'assets') {
+        if (in_array($uriComponents[0], array('assets', 'uploads'))) {
             $path = __DIR__ . '/../' . implode('/', $uriComponents);
-            // TODO: header('Content-Type: ' . SuperHelper::content_type($path));
-            header('Content-Type: text/css');
-            include $path;
-            die();
+            if (file_exists($path)) {
+                // TODO: header('Content-Type: ' . SuperHelper::content_type($path));
+                header('Content-Type: text/css');
+                include $path;
+                die();
+            } else {
+                SuperHelper::give404();
+                die('Page Not Found');
+            }
         }
 
         if (Login::wantsToLogin() && !Login::loggedIn()) {
@@ -69,6 +74,11 @@ class App
                 break;
             case 'loggedin':
                 View::render('loggedin.php');
+                break;
+            case 'upload':
+                FileUploader::upload();
+                SuperHelper::redirectoTo('/loggedin');
+                die();
                 break;
             case 'mysnippets':
                 View::render('mySnippets.php');
