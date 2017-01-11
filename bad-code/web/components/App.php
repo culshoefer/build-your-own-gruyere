@@ -24,17 +24,35 @@ class App
         return self::$instance;
     }
 
+    public static function getSecureData() {
+        return md5('hello world');
+    }
+
     public function start()
     {
         $uriComponents = SuperHelper::getPath();
 
-        if(Login::wantsToLogin() && !Login::loggedIn()) {
+        if (in_array($uriComponents[0], array('assets', 'uploads'))) {
+            $path = __DIR__ . '/../' . implode('/', $uriComponents);
+            if (file_exists($path)) {
+                header('Content-Type: ' . SuperHelper::content_type($path));
+                //header('Content-Type: text/css');
+                include $path;
+                die();
+            } else {
+                SuperHelper::give404();
+                die('Page Not Found');
+            }
+        }
+
+        if (Login::wantsToLogin() && !Login::loggedIn()) {
             Login::attemptLogin();
             SuperHelper::redirectoTo('/loggedin');
             die();
         }
 
-        if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login'))) {
+        if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login', 'api'))) {
+            SuperHelper::give401();
             SuperHelper::redirectoTo('/login');
             die();
         }
@@ -52,12 +70,21 @@ class App
             case 'post':
                 return POSTController::handle($uriComponents);
             case 'login':
+                if (Login::loggedIn()) {
+                    SuperHelper::redirectoTo('/loggedin');
+                    die();
+                }
                 View::render('login.php');
                 break;
             case 'loggedin':
                 View::render('loggedin.php');
                 break;
-            case 'mySnippets':
+            case 'upload':
+                FileUploader::upload();
+                SuperHelper::redirectoTo('/loggedin');
+                die();
+                break;
+            case 'mysnippets':
                 View::render('mySnippets.php');
                 break;
             case 'settings':
@@ -73,6 +100,7 @@ class App
                 die();
             default:
                 SuperHelper::give404();
+                die();
         }
     }
 }
