@@ -28,13 +28,22 @@ class App
     {
         $uriComponents = SuperHelper::getPath();
 
-        if(Login::wantsToLogin() && !Login::loggedIn()) {
+        if($uriComponents[0] === 'assets') {
+            $path = __DIR__ . '/../' . implode('/', $uriComponents);
+            // TODO: header('Content-Type: ' . SuperHelper::content_type($path));
+            header('Content-Type: text/css');
+            include $path;
+            die();
+        }
+
+        if (Login::wantsToLogin() && !Login::loggedIn()) {
             Login::attemptLogin();
             SuperHelper::redirectoTo('/loggedin');
             die();
         }
 
-        if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login'))) {
+        if (!Login::loggedIn() && !in_array($uriComponents[0], array('', 'login', 'api'))) {
+            SuperHelper::give401();
             SuperHelper::redirectoTo('/login');
             die();
         }
@@ -52,12 +61,16 @@ class App
             case 'post':
                 return POSTController::handle($uriComponents);
             case 'login':
+                if (Login::loggedIn()) {
+                    SuperHelper::redirectoTo('/loggedin');
+                    die();
+                }
                 View::render('login.php');
                 break;
             case 'loggedin':
                 View::render('loggedin.php');
                 break;
-            case 'mySnippets':
+            case 'mysnippets':
                 View::render('mySnippets.php');
                 break;
             case 'settings':
@@ -73,6 +86,7 @@ class App
                 die();
             default:
                 SuperHelper::give404();
+                die();
         }
     }
 }

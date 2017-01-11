@@ -21,8 +21,9 @@ class POSTController
     public static function handle($request) {
         $path = SuperHelper::getPath();
 
-        if(!Login::isLoggedIn()) {
-            return SuperHelper::giveForbidden();
+        if(!Login::loggedIn()) {
+            SuperHelper::give401();
+            SuperHelper::redirectoTo('/login');
         }
 
         $m = $_SERVER['REQUEST_METHOD'];
@@ -35,8 +36,10 @@ class POSTController
                     }
                     $conn = SuperHelper::getDbConnection();
                     $res = mysqli_query($conn,
-                        "SELECT * FROM snippets WHERE owner_id = " . $_POST['user_id']);
-                    echo json_encode($res);
+                        "SELECT * FROM snippets WHERE owner_id = '" . $_POST['user_id'] . "'");
+                    var_dump(mysqli_fetch_assoc($res));
+                    SuperHelper::jsonHeader();
+                    echo json_encode('');
                 }
                 break;
             }

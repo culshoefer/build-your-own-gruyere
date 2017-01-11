@@ -6,8 +6,8 @@
  */
 
 namespace BYOG\Components;
-use mysqli;
 
+use finfo;
 
 /**
  * Class Helper
@@ -18,35 +18,61 @@ use mysqli;
  */
 class SuperHelper
 {
-    public static function getPath() {
-        return explode('/', strtolower(trim($_SERVER['REQUEST_URI'],'/')));
+    public static function getPath()
+    {
+        $uri = mb_ereg_replace('\\?.*?$', '', $_SERVER['REQUEST_URI']);
+        return explode('/', strtolower(trim($uri, '/')));
     }
 
-    public static function redirectoTo($location) {
+    public static function redirectoTo($location)
+    {
         header('Location: ' . $location);
         die(); //Enables Session hijacking http://thedailywtf.com/articles/WellIntentioned-Destruction
     }
 
-    public static function give404() {
-        header("HTTP/1.0 404 Not Found");
-        self::redirectoTo('/login');
+    public static function jsonHeader()
+    {
+        header('Content-type: application/json');
     }
 
-    public static function give400() {
+    public static function give404()
+    {
+        header("HTTP/1.0 404 Not Found");
+    }
+
+    public static function give400()
+    {
         header("HTTP/1.0 400 Bad Request");
     }
 
-    public static function getDbConnection() { 
+    public static function give403()
+    {
+        header("HTTP/1.0 403 Forbidden");
+    }
+
+    public static function give401()
+    {
+        header("HTTP/1.0 401 Unauthorized");
+    }
+
+    public static function getDbConnection()
+    {
         $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
-        if(empty($conn->connect_error)) {
+        if (empty($conn->connect_error)) {
             return $conn;
         } else {
             echo "No connection to db possible";
+            die();
         }
     }
 
-    public static function giveForbidden() {
-        header("HTTP/1.0 403 Forbidden");
-        self::redirectoTo('/login');
+    public static function content_type($filename) {
+        $result = new finfo();
+
+        if (is_resource($result) === true) {
+            return $result->file($filename, FILEINFO_MIME_TYPE);
+        }
+
+        return false;
     }
 }
