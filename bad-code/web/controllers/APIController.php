@@ -31,7 +31,7 @@ class APIController
         if($request[1] === 'overview') {
             $conn = SuperHelper::getDbConnection();
             $res = mysqli_query($conn,
-                "SELECT * FROM users");
+                "SELECT * FROM users JOIN settings");
             SuperHelper::jsonHeader();
             $results_array = array();
             while ($row = mysqli_fetch_assoc($res)) {
