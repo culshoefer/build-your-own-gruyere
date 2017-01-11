@@ -48,6 +48,7 @@ def launch_attack(names, url, payload):
             pl = payload
         attack(word, url.replace('FUZZ', word), pl)
 
+
 def attack(word, url, payload):
     s = requests.Session()
 
@@ -58,7 +59,7 @@ def attack(word, url, payload):
         totaltime = str(elaptime - start)[1:10]
     else:
         list = payload.replace("=", " ").replace("&", " ").split(" ")
-        payload = dict([(k, v) for k,v in zip(list[::2], list[1::2])])
+        payload = dict([(k, v) for k, v in zip(list[::2], list[1::2])])
         r = s.post(url, data=payload)
         elaptime = time.time()
         totaltime = str(elaptime - start)[1:10]
