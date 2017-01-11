@@ -59,7 +59,7 @@ include 'includes/header.php';
                     $('profilecolour').val(data.profilecolour);
                 },
                 error: function (xhr) {
-                    location.reload();
+                    // TODO: Reload on error? Brute force attack? location.reload();
                 }
             });
 
