@@ -15,25 +15,37 @@ include 'includes/header.php';
                 <div class="card">
                     <span class="card-title">Edit your profile</span>
                     <div class="card-content">
-                        <form id="settings">
-                            <div class="input-field">
-                                <input id="username" type="text" placeholder="User name" class="validate">
-                            </div>
-                            <div class="input-field">
-                                <input id="password" type="password" placeholder="OLD password" class="validate">
-                            </div>
+                        <form id="settings" autocomplete="off">
                             <div class="input-field">
                                 <input id="avatarurl" type="text" placeholder="Icon" class="validate">
+                                <label for="avatarurl">Avatar URL</label>
                             </div>
                             <div class="input-field">
                                 <input id="homepageurl" type="text" placeholder="Homepage" class="validate">
+                                <label for="homepageurl">Home page URL</label>
                             </div>
                             <div class="input-field">
                                 <input id="profilecolour" type="text" placeholder="Profile colour" class="validate">
+                                <label for="profilecolour">Profile colour</label>
                             </div>
                             <div class="input-field">
                                 <textarea id="privatesnippet" class="materialize-textarea"
                                           placeholder="Private snippet"></textarea>
+                                <label for="privatesnippet">Private snippet</label>
+                            </div>
+                            <div class="input-field">
+                                <input autocomplete="off" readonly id="username" type="text" placeholder="User name" class="validate" onfocus="if (this.hasAttribute('readonly')) {
+    this.removeAttribute('readonly');
+    // fix for mobile safari to show virtual keyboard
+    this.blur();    this.focus();  }">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="input-field">
+                                <input autocomplete="off" readonly id="password" type="password" placeholder="OLD password" class="validate" onfocus="if (this.hasAttribute('readonly')) {
+    this.removeAttribute('readonly');
+    // fix for mobile safari to show virtual keyboard
+    this.blur();    this.focus();  }">
+                                <label for="password">Password</label>
                             </div>
                             <input type="submit" class="btn" name="name" value="Update">
                         </form>
@@ -55,8 +67,8 @@ include 'includes/header.php';
                     $('#username').val(data.username);
                     $('#avatarurl').val(data.avatarurl);
                     $('#privatesnippet').val(data.privatesnippet);
-                    $('homepageurl').val(data.homepageurl);
-                    $('profilecolour').val(data.profilecolour);
+                    $('#homepageurl').val(data.homepageurl);
+                    $('#profilecolour').val(data.profilecolour);
                 },
                 error: function (xhr) {
                     // TODO: Reload on error? Brute force attack? location.reload();
