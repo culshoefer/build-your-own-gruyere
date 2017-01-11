@@ -37,6 +37,7 @@ class APIController
             while ($row = mysqli_fetch_assoc($res)) {
                 $resRow = array();
                 $resRow['username'] = $row['name'];
+                $resRow['user_id'] = $row['user_id'];
                 $res2 = mysqli_query($conn,
                     "SELECT content FROM snippets WHERE owner_id = " . $row['id'] . " ORDER BY id DESC LIMIT 1");
                 if(mysqli_num_rows($res2) === 1) {
