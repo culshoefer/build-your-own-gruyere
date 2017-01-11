@@ -66,7 +66,7 @@ class App
                 View::render('homepage.php');
                 break;
             case 'sitemap.xml':
-                return file_get_contents(__DIR__ . "../sitemap.xml");
+                return file_get_contents(__DIR__ . "/../sitemap.xml");
             case 'api':
                 return APIController::handle($uriComponents);
             case 'post':
