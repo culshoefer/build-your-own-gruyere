@@ -54,18 +54,20 @@ include 'includes/header.php';
         $('#usn').text(username);
 
         $.get('/api/overview', function (data) {
-            function addChild(username, last_snippet) {
-                $('#allSnippets').append('<div class="card"> \
-                                            <span class="card-title">' + username + '</span>\
+            function addChild(username, user_id, last_snippet) {
+                $.get('/api/settings?user_id=' + user_id, function (data) {
+                    $('#allSnippets').append('<div class="card"> \
+                                            <span class="card-title" style="color:' + data.profilecolour + '">' + username + '</span>\
                                             <div class="card-content">\
                                                 <p>' + last_snippet + '</p>\
                                                 <a href="snippets?user_id=' + username + '">All snippets</a>\
                                             </div>\
                                           </div>');
+                });
             }
 
             data.forEach(function (entry) {
-                addChild(entry.username, entry.last_snippet);
+                addChild(entry.username, entry.user_id, entry.last_snippet);
             });
         });
 

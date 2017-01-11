@@ -51,12 +51,6 @@ class APIController
             echo json_encode($results_array);
             die();
         }
-
-        if (!Login::loggedIn()) {
-            SuperHelper::give401();
-            die('Unauthorized');
-        }
-
         switch ($request[1]) {
             case "snippets":
                 SnippetAPI::handle($request);
