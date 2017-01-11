@@ -54,20 +54,25 @@ include 'includes/header.php';
         $('#usn').text(username);
 
         $.get('/api/overview', function (data) {
-            function addChild(username, user_id, last_snippet) {
-                $.get('/api/settings?user_id=' + user_id, function (data) {
-                    $('#allSnippets').append('<div class="card"> \
-                                            <span class="card-title" style="color:' + data.profilecolour + '">' + username + '</span>\
+            function addChild(username, user_id, last_snippet, homepageurl) {
+                if(undefined === homepageurl) {
+                    homepageurl = "";
+                }
+                if(null != last_snippet) {
+                    $.get('/api/settings?user_id=' + user_id, function (data) {
+                        $('#allSnippets').append('<div class="card"> \
+                                            <span class="card-title" style="color:' + data.profilecolour + ' !important;">' + username + '</span>\
                                             <div class="card-content">\
                                                 <p>' + last_snippet + '</p>\
-                                                <a href="snippets?user_id=' + username + '">All snippets</a>\
+                                                <a href="' + homepageurl + '">Homepage</a>\
                                             </div>\
                                           </div>');
-                });
+                    });
+                }
             }
 
             data.forEach(function (entry) {
-                addChild(entry.username, entry.user_id, entry.last_snippet);
+                addChild(entry.username, entry.user_id, entry.last_snippet, entry.homepageurl);
             });
         });
 
