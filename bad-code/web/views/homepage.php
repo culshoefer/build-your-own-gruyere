@@ -10,18 +10,6 @@ include 'includes/header.php';
 
 <div class="container" id="allSnippets">
     <h2>List of Users</h2>
-    <div class="card">
-        <span class="card-title">Username</span>
-        <div class="card-content">
-            <p>
-                Snippet
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            </p>
-            <a href="#">Link for each user</a>
-        </div>
-    </div>
 </div>
 
 <script type="text/javascript">
