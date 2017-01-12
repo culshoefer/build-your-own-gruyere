@@ -15,17 +15,14 @@ include 'includes/header.php';
     <script type="text/javascript">
         $(document).ready(function () {
             $.get('/api/overview', function (data) {
-                function addChild(username, user_id, last_snippet, homepageurl) {
-                    if(undefined === homepageurl) {
-                        homepageurl = "";
-                    }
+                function addChild(username, user_id, last_snippet) {
                     if(null != last_snippet) {
                         $.get('/api/settings?user_id=' + user_id, function (data) {
-                            $('#allSnippets').append('<div class="card"> \
+                            $('#allSnippets').append('<div class="card"><img src="' + data.avatarurl + '"/> \
                                             <span class="card-title" style="color:' + data.profilecolour + ' !important;">' + username + '</span>\
                                             <div class="card-content">\
                                                 <p>' + last_snippet + '</p>\
-                                                <a href="' + homepageurl + '">Homepage</a>\
+                                                <a href="' + data.homepageurl + '">Homepage</a>\
                                             </div>\
                                           </div>');
                         });
@@ -33,7 +30,7 @@ include 'includes/header.php';
                 }
 
                 data.forEach(function (entry) {
-                    addChild(entry.username, entry.user_id, entry.last_snippet, entry.homepageurl);
+                    addChild(entry.username, entry.user_id, entry.last_snippet);
                 });
             });
         });

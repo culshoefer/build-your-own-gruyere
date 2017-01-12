@@ -58,8 +58,6 @@ class SuperHelper
     public static function getDbConnection()
     {
         $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
-        echo "ARE VALID CREDENTIALS CHECKING...";
-        die();
         if (empty($conn->connect_error)) {
             return $conn;
         } else {
