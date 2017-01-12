@@ -20,7 +20,7 @@ class SuperHelper
 {
     public static function getPath()
     {
-        $uri = mb_ereg_replace('\\?.*?$', '', $_SERVER['REQUEST_URI']);
+        $uri = @preg_replace('\\?.*?$', '', $_SERVER['REQUEST_URI']);
         return explode('/', strtolower(trim($uri, '/')));
     }
 

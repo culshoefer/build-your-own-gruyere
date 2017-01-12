@@ -51,7 +51,7 @@ class SettingsAPI
                 || !isset($_GET['homepageurl'])
                 || !isset($_GET['profilecolour'])) {
                 SuperHelper::give400();
-                die('Some of the setings are not specified!');
+                die('Some of the settings are not specified!');
             }
             $conn = SuperHelper::getDbConnection();
             $userRes = mysqli_query($conn,

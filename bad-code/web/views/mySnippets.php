@@ -30,7 +30,7 @@ include 'includes/header.php';
 
             function deleteSnippet(snippet_id) {
                 $.ajax({
-                    type: "DELETE",
+                    type: "GET",
                     url: "/api/snippets?snippet_id=" + snippet_id,
                     success: function (data) {
                         window.location.reload();
