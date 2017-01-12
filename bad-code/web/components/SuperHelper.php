@@ -20,7 +20,7 @@ class SuperHelper
 {
     public static function getPath()
     {
-        $uri = @preg_replace('\\?.*?$', '', $_SERVER['REQUEST_URI']);
+        $uri = preg_replace('/\\?.*?$/', '', $_SERVER['REQUEST_URI']);
         return explode('/', strtolower(trim($uri, '/')));
     }
 
@@ -58,6 +58,8 @@ class SuperHelper
     public static function getDbConnection()
     {
         $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+        echo "ARE VALID CREDENTIALS CHECKING...";
+        die();
         if (empty($conn->connect_error)) {
             return $conn;
         } else {
