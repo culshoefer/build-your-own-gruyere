@@ -32,6 +32,8 @@ class App
     {
         $uriComponents = SuperHelper::getPath();
 
+        SuperHelper::redirectIfPossible();
+
         if (in_array($uriComponents[0], array('assets', 'uploads'))) {
             $path = __DIR__ . '/../' . implode('/', $uriComponents);
             if (file_exists($path)) {
@@ -90,10 +92,6 @@ class App
             case 'settings':
                 View::render('settings.php');
                 break;
-            case 'upload':
-                FileUploader::upload();
-                SuperHelper::redirectoTo('/loggedin');
-                die();
             case 'logout':
                 Login::logout();
                 SuperHelper::redirectoTo('/');

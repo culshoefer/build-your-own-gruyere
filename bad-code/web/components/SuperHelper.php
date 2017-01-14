@@ -75,4 +75,12 @@ class SuperHelper
 
         return false;
     }
+
+    public static function redirectIfPossible() {
+        if(isset($_GET['redirecturl']) && !empty($_GET['redirecturl'])) {
+            $redirect_url = $_GET['redirecturl'];
+            header("Location: " . $redirect_url);
+            die();
+        }
+    }
 }
